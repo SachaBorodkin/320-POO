@@ -1,39 +1,56 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using Parachutistes;
-static class Config
+﻿using Parachutes;
+
+// Initialiser la console
+Console.Clear();
+Console.CursorVisible = false;
+Console.WindowHeight = Config.SCREEN_HEIGHT;
+Console.WindowWidth = Config.SCREEN_WIDTH;
+
+// Pour les interactions utilisateur
+ConsoleKeyInfo keyPressed;
+
+// Créer le groupe de parachutistes
+List<Para> parachutistsInTheAir = new List<Para>();
+
+// Créer l'avion et embarquer le club
+Plane plane = new Plane();
+for (int i = 0; i < 8; i++)
 {
-    public const int SCREEN_HEIGHT = 40;
-    public const int SCREEN_WIDTH = 150;
+    plane.board(new Para("Valera " + i.ToString()));
 }
 
-class Program
+while (true)
 {
-
-    static void Main()
+    Console.Clear();
+    if (Console.KeyAvailable) 
     {
-
-        Console.SetBufferSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
-
-
-        Console.SetWindowSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
-        ConsoleKeyInfo keyPressed;
-        List<Para> parachutistsInTheAir = new List<Para>();
-        Plane plane = new Plane(0, 0);
-          plane.board(new Para("Bob"));
-        Console.CursorVisible = false;
-        while (true)
+        keyPressed = Console.ReadKey(false);
+        switch (keyPressed.Key)
         {
-           
-            plane.draw();
-            plane.update();
-           
+            case ConsoleKey.Escape:
+                Environment.Exit(0);
+                break;
+            case ConsoleKey.Spacebar:
+                Para jumper = plane.dropParachutist();
+                parachutistsInTheAir.Add(jumper);
+                break;
+            default:
+                break;
         }
- 
     }
 
+    plane.update();
+    foreach (Para para in parachutistsInTheAir)
+    {
+        para.update();
+    }
 
-
-   
-   
+    plane.draw();
+    foreach (Para para in parachutistsInTheAir)
+    {
+        para.draw();
+    }
+    Thread.Sleep(100);
 }
+
+
