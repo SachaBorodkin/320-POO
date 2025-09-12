@@ -1,4 +1,5 @@
-﻿namespace Drones
+﻿using Drones;
+namespace Drones
 {
     internal static class Program
     {
@@ -20,8 +21,18 @@
             drone.getName = "Дрон СБУ ";
             fleet.Add(drone);
 
+            List<Building> street = new List<Building>();
+            Building building = new Building();
+            building.getBuildingXPosition = 0;
+            building.getBuildingYPosition = 100;
+            building.getDeepth = 100;
+            building.getWidth = 100;
+            street.Add(building);
+       
+
             // Démarrage
-            Application.Run(new AirSpace(fleet));
+            Application.Run(new AirSpace(fleet, street));
+            
         }
     }
 }
