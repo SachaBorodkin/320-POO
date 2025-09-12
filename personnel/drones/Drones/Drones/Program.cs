@@ -1,4 +1,4 @@
-namespace Drones
+﻿namespace Drones
 {
     internal static class Program
     {
@@ -12,15 +12,15 @@ namespace Drones
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            // Cr�ation de la flotte de drones
+            // Création de la flotte de drones
             List<Drone> fleet= new List<Drone>();
             Drone drone = new Drone();
-            drone.x = 100;
-            drone.y = 100;
-            drone.name = "Joe";
+            drone.getXPosition = 100;
+            drone.getYPosition = 100;
+            drone.getName = "Дрон СБУ ";
             fleet.Add(drone);
 
-            // D�marrage
+            // Démarrage
             Application.Run(new AirSpace(fleet));
         }
     }
