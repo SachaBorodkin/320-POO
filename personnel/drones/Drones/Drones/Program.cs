@@ -22,13 +22,16 @@ namespace Drones
             fleet.Add(drone);
 
             List<Building> street = new List<Building>();
-            Building building = new Building();
-            building.getBuildingXPosition = 0;
-            building.getBuildingYPosition = 100;
-            building.getDeepth = 100;
-            building.getWidth = 100;
-            street.Add(building);
        
+            ZavodRoshen Vinnytsia = new ZavodRoshen(100, 30, 30, 10, 10);
+            Vinnytsia.setBuildingXPosition = 30;
+            Vinnytsia.setBuildingYPosition=30;
+            Vinnytsia.getsetDepth=10;
+            Vinnytsia.getsetWidth=10;
+            street.Add(Vinnytsia);
+
+            ATB Zhytomyr = new ATB("Lundi-Samedi: 8h-18h", 100, 150, 100, 100);
+            street.Add(Zhytomyr);
 
             // Démarrage
             Application.Run(new AirSpace(fleet, street));
