@@ -7,7 +7,7 @@ using System.Transactions;
 
 namespace Drones
 {
-    public partial class Building
+    public abstract class Building
     {
         
         protected int x;
@@ -15,6 +15,7 @@ namespace Drones
         protected int depth;
         protected int width;
         protected string color;
+
         public int setBuildingXPosition
         {
             set
@@ -35,6 +36,7 @@ namespace Drones
             get { return width; }
             set { width = value; }
         }
+        public abstract void Render(BufferedGraphics drawingSpace);
     }
     public partial class ZavodRoshen : Building
     {
@@ -48,6 +50,10 @@ namespace Drones
                 this.width = width;
             Console.WriteLine("L'usine consume " + powerConsumption + " KwH");
         }
+        public override void Render(BufferedGraphics drawingSpace)
+        {
+            drawingSpace.Graphics.FillRectangle(buildingBrush, new Rectangle(x, y, width, depth));
+        }
     }
     public partial class ATB : Building
     {
@@ -60,6 +66,10 @@ namespace Drones
             this.y = y;
             this.depth = depth;
             this.width = width;
+        }
+        public override void Render(BufferedGraphics drawingSpace)
+        {
+            drawingSpace.Graphics.FillEllipse(buildingBrush, new Rectangle(x, y, width, width));
         }
     }
 }
