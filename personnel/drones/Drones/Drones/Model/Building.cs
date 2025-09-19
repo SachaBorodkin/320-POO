@@ -41,9 +41,11 @@ namespace Drones
     public partial class ZavodRoshen : Building
     {
         private float _powerConsumption;
-        public ZavodRoshen(int powerConsumption, int x, int y, int depth, int width) : base() 
+        private int id;
+        public ZavodRoshen(int powerConsumption, int x, int y, int depth, int width, int id) : base() 
         {
-        _powerConsumption = powerConsumption;
+            this._powerConsumption = powerConsumption;
+            this.id = id;
             this.x = x;
             this.y = y;
             this.depth = depth;
@@ -54,6 +56,14 @@ namespace Drones
         {
             drawingSpace.Graphics.FillRectangle(buildingBrush, new Rectangle(x, y, width, depth));
         }
+        public void Update(int interval)
+        {
+            int compteur = 0;
+            compteur++;
+            if (compteur > 5)
+                Console.WriteLine("Nachialnika, cartonka sedelan");
+        }
+
     }
     public partial class ATB : Building
     {

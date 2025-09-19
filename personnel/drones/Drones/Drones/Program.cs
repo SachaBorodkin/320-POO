@@ -23,11 +23,7 @@ namespace Drones
 
             List<Building> street = new List<Building>();
        
-            ZavodRoshen Vinnytsia = new ZavodRoshen(100, 30, 30, 10, 10);
-            Vinnytsia.setBuildingXPosition = 30;
-            Vinnytsia.setBuildingYPosition=30;
-            Vinnytsia.getsetDepth=10;
-            Vinnytsia.getsetWidth=10;
+            ZavodRoshen Vinnytsia = new ZavodRoshen(100, 30, 30, 10, 10, 1);
             street.Add(Vinnytsia);
 
             ATB Zhytomyr = new ATB("Lundi-Samedi: 8h-18h", 100, 150, 100, 100);
