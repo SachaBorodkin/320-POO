@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drones", "Drones\Drones.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{BC856D86-606E-42AA-91F5-7CAB5F310217}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDrones", "TestDrones\TestDrones.csproj", "{99016BCC-8B00-45C1-BF6D-FA454A90E923}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{2EEE1A5F-56B1-463B-A464-11E112253F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EEE1A5F-56B1-463B-A464-11E112253F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EEE1A5F-56B1-463B-A464-11E112253F45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99016BCC-8B00-45C1-BF6D-FA454A90E923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99016BCC-8B00-45C1-BF6D-FA454A90E923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99016BCC-8B00-45C1-BF6D-FA454A90E923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99016BCC-8B00-45C1-BF6D-FA454A90E923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

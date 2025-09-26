@@ -15,6 +15,7 @@ namespace Drones
 
         BufferedGraphicsContext currentContext;
         BufferedGraphics airspace;
+        private List<Drone> drones;
 
         // Initialisation de l'espace aérien avec un certain nombre de drones
         public AirSpace(List<Drone> fleet, List<Building> street)
@@ -28,7 +29,12 @@ namespace Drones
             this.fleet = fleet;
             this.street = street;
         }
-     
+
+        public AirSpace(List<Drone> drones)
+        {
+            this.drones = drones;
+        }
+
         // Affichage de la situation actuelle
         private void Render()
         {
@@ -54,6 +60,10 @@ namespace Drones
             foreach (Drone drone in fleet)
             {
                 drone.Update(interval);
+            }
+            if (fleet.Count > 10)
+            {
+                throw new Exception("Quantité de drones est supérieure à 10");
             }
         }
 
