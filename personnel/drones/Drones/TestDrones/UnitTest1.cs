@@ -1,12 +1,59 @@
+using Drones;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Drones;
 namespace Drones
 {
     [TestClass]
     public class DroneTests
     {
+        [TestClass]
+        public class DroneUnitTests
+        {
+            [TestMethod]
+            public void NewDrone_HasFullCharge()
+            {
+                var drone = new Drone(0, 0);
+                var chargeField = typeof(Drone).GetField("charge", BindingFlags.NonPublic | BindingFlags.Instance);
+                int charge = (int)chargeField.GetValue(drone);
+                Assert.AreEqual(1000, charge);
+            }
 
+            [TestMethod]
+            public void Update_DecreasesCharge()
+            {
+                var drone = new Drone(0, 0);
+                drone.Update(100);
+                var chargeField = typeof(Drone).GetField("charge", BindingFlags.NonPublic | BindingFlags.Instance);
+                int charge = (int)chargeField.GetValue(drone);
+                Assert.IsTrue(charge < 1000);
+            }
+
+            [TestMethod]
+            public void LowBattery_IsTrue_WhenChargeBelow20Percent()
+            {
+                var drone = new Drone(0, 0);
+                var chargeField = typeof(Drone).GetField("charge", BindingFlags.NonPublic | BindingFlags.Instance);
+                chargeField.SetValue(drone, 199); // moins de 20%
+                Assert.IsTrue(drone.LowBattery);
+            }
+
+            [TestMethod]
+            public void Update_HasNoEffect_WhenBatteryIsZero()
+            {
+                var drone = new Drone(0, 0);
+                var chargeField = typeof(Drone).GetField("charge", BindingFlags.NonPublic | BindingFlags.Instance);
+                chargeField.SetValue(drone, 0);
+
+                int xBefore = drone.getXPosition;
+                int yBefore = drone.getYPosition;
+
+                drone.Update(100);
+
+                Assert.AreEqual(xBefore, drone.getXPosition);
+                Assert.AreEqual(yBefore, drone.getYPosition);
+            }
+        }
         [TestMethod]
         public void Test_that_drone_is_taking_orders()
         {

@@ -33,7 +33,10 @@ namespace Drones
             get { return name; }
         set { name = value; }
         }
-
+        public bool LowBattery
+        {
+            get { return charge < 200; } // 20% de 1000
+        }
         public bool Evacuate(Rectangle zone)
         {
             if (!zone.Contains(x, y))
@@ -63,6 +66,8 @@ namespace Drones
         // que 'interval' millisecondes se sont écoulées
         public void Update(int interval)
         {
+            if (charge <= 0)
+                return; // ne rien faire si la batterie est vide
             x += 2;                                    // Il s'est déplacé de 2 pixels vers la droite
             y += RandomNumberHelper.Get(-2, 3);                     // Il s'est déplacé d'une valeur aléatoire vers le haut ou le bas
             charge--;                                  // Il a dépensé de l'énergie
