@@ -3,11 +3,11 @@ namespace Drones
     // La classe AirSpace représente le territoire au dessus duquel les drones peuvent voler
     // Il s'agit d'un formulaire (une fenêtre) qui montre une vue 2D depuis en dessus
     // Il n'y a donc pas de notion d'altitude qui intervient
-
     public partial class AirSpace : Form
     {
         public static readonly int WIDTH = 1200;        // Dimensions of the airspace
         public static readonly int HEIGHT = 600;
+        public static Dispatch DispatchCenter { get; private set; } = new Dispatch();
 
         // La flotte est l'ensemble des drones qui évoluent dans notre espace aérien
         private List<Drone> fleet;
@@ -21,11 +21,13 @@ namespace Drones
         public AirSpace(List<Drone> fleet, List<Building> street)
         {
             InitializeComponent();
+
             // Gets a reference to the current BufferedGraphicsContext
             currentContext = BufferedGraphicsManager.Current;
             // Creates a BufferedGraphics instance associated with this form, and with
             // dimensions the same size as the drawing surface of the form.
             airspace = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
+
             this.fleet = fleet;
             this.street = street;
         }
@@ -51,19 +53,31 @@ namespace Drones
             {
                 building.Render(airspace);
             }
+
             airspace.Render();
         }
 
         // Calcul du nouvel état après que 'interval' millisecondes se sont écoulées
         private void Update(int interval)
         {
+            // --- Mise à jour des drones ---
             foreach (Drone drone in fleet)
             {
                 drone.Update(interval);
             }
+
             if (fleet.Count > 10)
             {
                 throw new Exception("Quantité de drones est supérieure à 10");
+            }
+
+            // --- Mise à jour des usines (Factories) ---
+            foreach (var building in street)
+            {
+                if (building is ZavodRoshen factory)
+                {
+                    factory.Update(interval);
+                }
             }
         }
 

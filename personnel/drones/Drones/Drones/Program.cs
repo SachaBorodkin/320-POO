@@ -1,4 +1,5 @@
 ﻿using Drones;
+using Drones.Helpers;
 namespace Drones
 {
     internal static class Program
@@ -31,7 +32,7 @@ namespace Drones
 
             ATB Zhytomyr = new ATB("Lundi-Samedi: 8h-18h", 100, 150, 100, 100);
             street.Add(Zhytomyr);
-
+            List<Box> boxes = new List<Box>();
             // Démarrage
             Application.Run(new AirSpace(fleet, street));
             

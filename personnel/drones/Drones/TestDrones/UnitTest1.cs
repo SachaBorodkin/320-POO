@@ -33,4 +33,30 @@ namespace Drones
             Assert.AreEqual(EvacuationState.Free, drone.GetEvacuationState());
         }
     }
+    [TestClass]
+    public class DispatchTests
+    {
+        [TestMethod]
+        public void TestAddBox()
+        {
+            Dispatch dispatch = new Dispatch();
+            Box box = new Box(7, "Rouge");
+
+            dispatch.AddBox(box);
+
+            Assert.AreEqual(1, dispatch.GetAllBoxes().Count);
+        }
+
+        [TestMethod]
+        public void TestRemoveBox()
+        {
+            Dispatch dispatch = new Dispatch();
+            Box box = new Box(7, "Bleu");
+
+            dispatch.AddBox(box);
+            dispatch.RemoveBox(box);
+
+            Assert.AreEqual(0, dispatch.GetAllBoxes().Count);
+        }
+    }
 }

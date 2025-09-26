@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Drones.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,8 @@ namespace Drones
         protected int depth;
         protected int width;
         protected string color;
-
+        private List<Box> boxes;
+        public int frameCounter = 0;
         public int setBuildingXPosition
         {
             set
@@ -41,11 +43,11 @@ namespace Drones
     public partial class ZavodRoshen : Building
     {
         private float _powerConsumption;
-        private int id;
+        public int Id { get; private set; }
         public ZavodRoshen(int powerConsumption, int x, int y, int depth, int width, int id) : base() 
         {
             this._powerConsumption = powerConsumption;
-            this.id = id;
+            this.Id = id;
             this.x = x;
             this.y = y;
             this.depth = depth;
@@ -60,8 +62,24 @@ namespace Drones
         {
             int compteur = 0;
             compteur++;
-            if (compteur > 5)
-                Console.WriteLine("Nachialnika, cartonka sedelan");
+             frameCounter += interval;
+
+    if (frameCounter >= 5000) // 5 secondes
+    {
+        frameCounter = 0;
+
+        int poids = RandomNumberHelper.Get(5, 11); 
+        string[] couleurs = { "Rouge", "Jaune", "Bleu", "Brun", "Orange" };
+                Random rnd = new Random();
+                string couleur = couleurs[rnd.Next(couleurs.Length)];
+
+                Box box = new Box(poids, couleur);
+
+        Console.WriteLine($"[Factory {Id}] Production : {box}");
+
+      
+        AirSpace.DispatchCenter.AddBox(box);
+    }
         }
 
     }
