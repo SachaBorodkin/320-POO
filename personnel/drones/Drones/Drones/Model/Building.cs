@@ -50,7 +50,7 @@ namespace Drones
             this.y = y;
             this.depth = depth;
                 this.width = width;
-            Console.WriteLine("L'usine consume " + powerConsumption + " KwH");
+            Console.WriteLine("L'usine consomme " + powerConsumption + " KwH");
         }
         public override void Render(BufferedGraphics drawingSpace)
         {
