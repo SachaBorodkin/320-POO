@@ -18,12 +18,10 @@ namespace Drones
                 List<Drone> fleet = new List<Drone>();
          
 
-            Drone drone = new Drone();
-            drone.getXPosition = 100;
-            drone.getYPosition = 100;
+            Drone drone = new Drone(100, 100);
             drone.getName = "100% pas le drone";//"Дрон СБУ ";
           /* */
-
+          fleet.Add(drone);
 
             
             List<Building> street = new List<Building>();

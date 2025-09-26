@@ -6,9 +6,9 @@ namespace Drones
     [TestClass]
     public class DroneTests
     {
-       
+
         [TestMethod]
-            public void Test_that_drone_is_taking_orders()
+        public void Test_that_drone_is_taking_orders()
         {
             // Arrange
             Drone drone = new Drone(500, 500);
