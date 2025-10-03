@@ -11,7 +11,9 @@ namespace Drones
         private string name;                           // Un nom
         private int x ;                                // Position en X depuis la gauche de l'espace aérien
         private int y;                                 // Position en Y depuis le haut de l'espace aérien
-        private EvacuationState state;
+        private EvacuationState state;                 //L'état de l'évacuation du drone
+
+        //Constructeur de la classe drone
         public Drone(int x, int y)
         {
             this.x = x;
@@ -19,6 +21,7 @@ namespace Drones
             this.state = EvacuationState.Free;
         }
 
+        //Récupérations des propriétés du drone
         public int getXPosition
         {
             get { return x; }
@@ -37,6 +40,8 @@ namespace Drones
         {
             get { return charge < 200; } // 20% de 1000
         }
+
+        //Etat d'évacuation du drone
         public bool Evacuate(Rectangle zone)
         {
             if (!zone.Contains(x, y))
@@ -52,11 +57,13 @@ namespace Drones
             }
         }
 
+        //Le vol libre du drone
         public void FreeFlight()
         {
             state = EvacuationState.Free;
         }
 
+        //Récupération de l'état de l'évacuation du drone
         public EvacuationState GetEvacuationState()
         {
             return state;

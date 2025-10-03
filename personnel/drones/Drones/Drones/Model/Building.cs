@@ -8,16 +8,19 @@ using System.Transactions;
 
 namespace Drones
 {
+    //Déclaration de la classe parente pour héritage
     public abstract class Building
     {
         
-        protected int x;
-        protected int y;
-        protected int depth;
-        protected int width;
-        protected string color;
-        private List<Box> boxes;
-        public int frameCounter = 0;
+        protected int x;                                //Position X de la batiment
+        protected int y;                                //Position Y de la batiment
+        protected int depth;                            //Profondeur de la batiment
+        protected int width;                            //Largeur de la batiment
+        protected string color;                         //Couleur de la batiment   
+        private List<Box> boxes;                        //Liste des boxes de la batiment
+        public int frameCounter = 0;                    //Compteur des frames
+
+        //Attribution de X de la batiment
         public int setBuildingXPosition
         {
             set
@@ -25,19 +28,23 @@ namespace Drones
                 x = value;
             }
         }
+        //Attribution de Y de la batiment
         public int setBuildingYPosition
         {
             set { y = value; }
         }
+        //Attribution du profondeur de la batiment
         public int getsetDepth {
         get { return depth; }
             set { depth = value; }
         }
+        //Attribution du largeur de la batiment
         public int getsetWidth
         {
             get { return width; }
             set { width = value; }
         }
+        //Render de la batiment
         public abstract void Render(BufferedGraphics drawingSpace);
     }
     public partial class ZavodRoshen : Building
